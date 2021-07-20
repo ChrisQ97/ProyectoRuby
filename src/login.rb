@@ -1,12 +1,14 @@
 require 'bcrypt'
 require 'io/console'
-require 'C:\Users\caqp1\Documents\EdTeam\Ruby\ProyectoRuby\src\archive.rb'
+require '.\src\archive.rb'
 require 'byebug'
+require '.\src\manager.rb'
 class Login
     def initialize
         @user_info = []
         @username, @password = '',''
         @file = Archive.new
+        @manager = Manager.new
     end
     def user_exist? 
         if (!@file.file_exist?('.\dist\user.txt'))
@@ -18,6 +20,7 @@ class Login
                 credential.gsub!("\n","")
             end 
             current_user
+            @manager.menu
         end
     end
     def new_user
@@ -44,5 +47,3 @@ class Login
     end
 end
 
-login = Login.new
-login.user_exist?

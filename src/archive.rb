@@ -19,4 +19,24 @@ class Archive
     def file_exist? (ruta)
         File.file?(ruta)
     end
+    def create_file_task
+        File.new('.\dist\tasks.txt',"w")
+    end
+    def read_file_task
+        File.open('.\dist\tasks.txt',"r") do |f|
+            while line = f.gets
+                line = eval(line)
+                $manager.append(line)
+            end
+        end
+
+    end
+    def write_file_task
+        File.open('.\dist\tasks.txt',"w") do |f|
+            f.puts $manager
+        end
+
+    end
+
+
 end
